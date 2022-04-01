@@ -13,6 +13,7 @@ Snowflake DDL (okta_ga.sql) for creating tables and loading csv via snowsql.
 ### Liveboards
 - Okta Login History 
 - Okta Application History 
+- Pinboard_Manifest.yaml
 
 # Installation Instructions 
 
@@ -29,10 +30,15 @@ The Okta System Log API provides near real-time, read-only access to your organi
 - Use the okta_ga.sql DDL script to create the necessary staging table (syslog) in your data warehouse.
 - Load your csv data file into the "syslog" table 
 
-### Connect with Thoughtspot 
+### Connect with Thoughtspot and Import TML
 - Log into your ThoughtSpot instance and create an Embrace connection to each of the "syslog" table.
+- Combine all liveboard TML files into a ZIP file: 
+  - pinboard_liveboard.yaml
+  - Okta Application Usage.pinboard.tml
+  - Okta Login History.pinboard.tml
+ 
 - Import the TML (okta_tmlblocks_worksheet.tml) for the worksheets and verify that it has all been imported without any errors.
-- Import the TML (okta_tmlblocks_liveboards.zip) for the liveboards and verify that it has all been imported without any errors.
+- Import the zipper file for the liveboards and verify that it has all been imported without any errors.
 
 # Liveboard Screenshots 
 
