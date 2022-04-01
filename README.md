@@ -1,4 +1,3 @@
-# tmlblock-okta_usage
 
 # Okta
 Prebuilt worksheets and liveboard visualizations based on Okta data. Monitor login events and application usuage for your org using Thoughtspot. 
