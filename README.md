@@ -39,6 +39,7 @@ The Okta System Log API provides near real-time, read-only access to your organi
 
 ### Okta Login History 
 <img width="1200" alt="okta login history" src="https://user-images.githubusercontent.com/102629468/161130359-ec5a2372-1a06-4df3-beaf-95b5646e86ec.png">
-### Okta Application History 
+
+### Okta Application History
 <img width="1200" alt="okta application usuage" src="https://user-images.githubusercontent.com/102629468/161130389-92c939cf-8228-41eb-ad20-008a8764d267.png">
 
