@@ -38,7 +38,7 @@ The Okta System Log API provides near real-time, read-only access to your organi
   - Okta Login History.pinboard.tml
  
 - Import the TML (okta_tmlblocks_worksheet.tml) for the worksheets and verify that it has all been imported without any errors.
-- Import the zipper file for the liveboards and verify that it has all been imported without any errors.
+- Import the zipped file for the liveboards and verify that it has all been imported without any errors.
 
 # Liveboard Screenshots 
 
