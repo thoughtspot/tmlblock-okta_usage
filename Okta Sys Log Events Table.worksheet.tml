@@ -1,0 +1,202 @@
+guid: 660802b6-aee7-4fee-8dc8-8af863425077
+worksheet:
+  name: Okta Sys Log Events Table
+  description: "The System Log contains details of all logged such as time, actor and target. This allows for analysis such as application usage & adoption or Login  success/failure of events and IP location analysis."
+  tables:
+  - name: SYSLOG
+  table_paths:
+  - id: SYSLOG_1
+    table: SYSLOG
+    join_path:
+    - {}
+  formulas:
+  - name: '# Actors'
+    expr: "unique count ( [SYSLOG_1::actor.id] )"
+  - name: '# App Events'
+    expr: "count_if ( [SYSLOG_1::event_type] = 'user.authentication.sso' , [SYSLOG_1::uuid] )"
+  - name: '# Events'
+    expr: "count ( [SYSLOG_1::uuid] )"
+  - name: Timestamp
+    expr: "add_days ( [SYSLOG_1::timestamp] , diff_days ( today ( ) , 10/01/2021 ) )"
+  worksheet_columns:
+  - name: Severity
+    description: "indicator if the event is INFO, WARN, ERROR"
+    column_id: SYSLOG_1::severity
+    properties:
+      column_type: ATTRIBUTE
+  - name: Event Type
+    description: Event types are the primary method of categorization within the Okta eventing platform
+    column_id: SYSLOG_1::event_type
+    properties:
+      column_type: ATTRIBUTE
+  - name: Display Message
+    description: user focussed message describing the event type
+    column_id: SYSLOG_1::display_message
+    properties:
+      column_type: ATTRIBUTE
+  - name: UUID
+    description: transaction unique identifier
+    column_id: SYSLOG_1::uuid
+    properties:
+      column_type: ATTRIBUTE
+  - name: Outcome Result
+    description: categorisation of the event result. i.e. success or failure
+    column_id: SYSLOG_1::outcome.result
+    properties:
+      column_type: ATTRIBUTE
+  - name: Outcome Reason
+    description: detailed message of the outcome result
+    column_id: SYSLOG_1::outcome.reason
+    properties:
+      column_type: ATTRIBUTE
+  - name: Actor ID
+    description: 'unique internal GUID '
+    column_id: SYSLOG_1::actor.id
+    properties:
+      column_type: ATTRIBUTE
+  - name: Actor Type
+    description: Classification as user or system actor
+    column_id: SYSLOG_1::actor.type
+    properties:
+      column_type: ATTRIBUTE
+  - name: Actor Name
+    description: display name
+    column_id: SYSLOG_1::actor.display_name
+    properties:
+      column_type: ATTRIBUTE
+      synonyms:
+      - User Name
+  - name: Actor Alternate ID
+    description: display string ID such as email address
+    column_id: SYSLOG_1::actor.alternate_id
+    properties:
+      column_type: ATTRIBUTE
+  - name: Authentication Provider
+    description: authentication provider details
+    column_id: SYSLOG_1::authentication_context.authentication_provider
+    properties:
+      column_type: ATTRIBUTE
+  - name: Credential Type
+    description: credential indicator
+    column_id: SYSLOG_1::authentication_context.credential_type
+    properties:
+      column_type: ATTRIBUTE
+  - name: Session ID
+    description: unique ID for the session
+    column_id: SYSLOG_1::authentication_context.external_session_id
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client IP Address
+    description: client's IP address
+    column_id: SYSLOG_1::client.ip_address
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client Device
+    description: "client's device type. I.e. tablet, mobile, computer"
+    column_id: SYSLOG_1::client.device
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client RAW Agent
+    description: client's details in raw format
+    column_id: SYSLOG_1::client.user_agent.raw_user_agent
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client OS
+    description: client's operating system
+    column_id: SYSLOG_1::client.user_agent.os
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client Browser
+    description: client's browser
+    column_id: SYSLOG_1::client.user_agent.browser
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client Country
+    description: client's country as derived from the IP address
+    column_id: SYSLOG_1::client.geographical_context.country
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client City
+    description: client's city as derived from the IP address
+    column_id: SYSLOG_1::client.geographical_context.city
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client Postal Code
+    description: client's postal code as derived from the IP address
+    column_id: SYSLOG_1::client.geographical_context.postal_code
+    properties:
+      column_type: ATTRIBUTE
+  - name: Client Longitude
+    description: client's longitude as derived from the IP address
+    column_id: SYSLOG_1::client.geographical_context.geolocation.lon
+    properties:
+      column_type: ATTRIBUTE
+      geo_config:
+        longitude: true
+  - name: Client Latitude
+    description: client's latitude as derived from the IP address
+    column_id: SYSLOG_1::client.geographical_context.geolocation.lat
+    properties:
+      column_type: ATTRIBUTE
+      geo_config:
+        latitude: true
+  - name: Transaction ID
+    description: unique transaction ID
+    column_id: SYSLOG_1::transaction.id
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction Type
+    description: transaction categorisation. i.e. job or web
+    column_id: SYSLOG_1::transaction.type
+    properties:
+      column_type: ATTRIBUTE
+  - name: "Target ID [0]"
+    description: unique internal ID for the initial target
+    column_id: SYSLOG_1::target0.id
+    properties:
+      column_type: ATTRIBUTE
+  - name: "Target Type [0]"
+    description: classification for the initial target
+    column_id: SYSLOG_1::target0.type
+    properties:
+      column_type: ATTRIBUTE
+  - name: "Target Alternate ID [0]"
+    description: string ID for the initial target
+    column_id: SYSLOG_1::target0.alternate_id
+    properties:
+      column_type: ATTRIBUTE
+  - name: "Target Name [0]"
+    description: display name for the initial target
+    column_id: SYSLOG_1::target0.display_name
+    properties:
+      column_type: ATTRIBUTE
+  - name: '# Events'
+    description: count of event's UUID
+    formula_id: '# Events'
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: '# Actors'
+    description: unique count of actor ID
+    formula_id: '# Actors'
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: '# App Events'
+    description: count of user.authentication.sso event's UUID
+    formula_id: '# App Events'
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Timestamp
+    formula_id: Timestamp
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+      calendar: calendar
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
