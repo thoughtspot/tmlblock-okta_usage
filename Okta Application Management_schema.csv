@@ -1,0 +1,31 @@
+SpotApp table;SpotApp columns;SpotApp column datatype;SpotApp column description;SpotApp mandatory column
+SYSLOG;actor.alternate_id;VARCHAR;display string ID such as email address;Yes
+SYSLOG;actor.display_name;VARCHAR;display name;Yes
+SYSLOG;actor.id;VARCHAR;unique internal GUID ;Yes
+SYSLOG;actor.type;VARCHAR;Classification as user or system actor;Yes
+SYSLOG;authentication_context.authentication_provider;VARCHAR;authentication provider details;Yes
+SYSLOG;authentication_context.credential_type;VARCHAR;credential indicator;Yes
+SYSLOG;authentication_context.external_session_id;VARCHAR;unique ID for the session;Yes
+SYSLOG;client.device;VARCHAR;client's device type. I.e. tablet, mobile, computer;Yes
+SYSLOG;client.geographical_context.city;VARCHAR;client's city as derived from the IP address;Yes
+SYSLOG;client.geographical_context.country;VARCHAR;client's country as derived from the IP address;Yes
+SYSLOG;client.geographical_context.geolocation.lat;VARCHAR;client's latitude as derived from the IP address;Yes
+SYSLOG;client.geographical_context.geolocation.lon;VARCHAR;client's longitude as derived from the IP address;Yes
+SYSLOG;client.geographical_context.postal_code;VARCHAR;client's postal code as derived from the IP address;Yes
+SYSLOG;client.ip_address;VARCHAR;client's IP address;Yes
+SYSLOG;client.user_agent.browser;VARCHAR;client's browser;Yes
+SYSLOG;client.user_agent.os;VARCHAR;client's operating system;Yes
+SYSLOG;client.user_agent.raw_user_agent;VARCHAR;client's details in raw format;Yes
+SYSLOG;display_message;VARCHAR;user focussed message describing the event type;Yes
+SYSLOG;event_type;VARCHAR;This is to map the column event_type;Yes
+SYSLOG;outcome.reason;VARCHAR;detailed message of the outcome result;Yes
+SYSLOG;outcome.result;VARCHAR;categorisation of the event result. i.e. success or failure;Yes
+SYSLOG;severity;VARCHAR;indicator if the event is INFO, WARN, ERROR;Yes
+SYSLOG;target0.alternate_id;VARCHAR;string ID for the initial target;Yes
+SYSLOG;target0.display_name;VARCHAR;display name for the initial target;Yes
+SYSLOG;target0.id;VARCHAR;unique internal ID for the initial target;Yes
+SYSLOG;target0.type;VARCHAR;classification for the initial target;Yes
+SYSLOG;timestamp;DATE_TIME;This is to map the column timestamp;Yes
+SYSLOG;transaction.id;VARCHAR;unique transaction ID;Yes
+SYSLOG;transaction.type;VARCHAR;transaction categorisation. i.e. job or web;Yes
+SYSLOG;uuid;VARCHAR;transaction unique identifier;Yes
